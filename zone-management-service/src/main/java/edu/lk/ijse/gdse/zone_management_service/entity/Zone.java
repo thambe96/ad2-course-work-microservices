@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,5 +23,6 @@ public class Zone {
     private String userId;
     private double minTemp;
     private double maxTemp;
+    private Date createdAt;
 
 }

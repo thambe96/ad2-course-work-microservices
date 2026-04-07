@@ -1,5 +1,6 @@
 package edu.lk.ijse.gdse.zone_management_service.service.impl;
 
+import edu.lk.ijse.gdse.zone_management_service.client.IoTServerClient;
 import edu.lk.ijse.gdse.zone_management_service.dto.IotServerResponse;
 import edu.lk.ijse.gdse.zone_management_service.dto.RequestZoneDTO;
 import edu.lk.ijse.gdse.zone_management_service.dto.ZoneDTO;
@@ -17,10 +18,11 @@ public class ZoneServiceImpl implements ZoneService {
 
     private final ZoneRepo zoneRepo;
     private final ModelMapper modelMapper;
+    private final IoTServerClient ioTServerClient;
 
 
     @Override
-    public ZoneDTO saveZoneWithDevice(RequestZoneDTO requestZoneDTO) {
+    public ZoneDTO saveZoneWithDevice(RequestZoneDTO requestZoneDTO, String authHeader) {
 
         // send device name and zoneId to Iot Server
         ZoneRegDTO zoneRegDTO = new ZoneRegDTO(
@@ -28,10 +30,22 @@ public class ZoneServiceImpl implements ZoneService {
                 requestZoneDTO.getZoneId()
         );
 
+        IotServerResponse iotServerResponse =
+                ioTServerClient
+                .registerDeviceWithZone(
+                authHeader,
+                zoneRegDTO);
+
+        Zone zone = new Zone();
+        zone.setDeviceId(iotServerResponse.getDeviceId());
+        zone.setName(iotServerResponse.getName());
+        zone.setZoneId(iotServerResponse.getZoneId());
+        zone.setMaxTemp(requestZoneDTO.getMaxTemp());
+        zone.setMinTemp(requestZoneDTO.getMinTemp());
+        zone.setCreatedAt(iotServerResponse.getCreateAt());
+        zone.setUserId(iotServerResponse.getUserId());
 
 
-
-
-        return zoneRepo.save(zone);
+        return modelMapper.map(zoneRepo.save(zone), ZoneDTO.class);
     }
 }

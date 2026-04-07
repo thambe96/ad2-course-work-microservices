@@ -1,7 +1,11 @@
 package edu.lk.ijse.gdse.zone_management_service.dto;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.util.Date;
+@AllArgsConstructor
+@Data
 public class IotServerResponse {
 
     private String zoneId;

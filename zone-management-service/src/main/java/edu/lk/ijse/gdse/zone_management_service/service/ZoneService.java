@@ -5,6 +5,6 @@ import edu.lk.ijse.gdse.zone_management_service.dto.ZoneDTO;
 
 public interface ZoneService {
 
-    ZoneDTO saveZoneWithDevice(RequestZoneDTO requestZoneDTO);
+    ZoneDTO saveZoneWithDevice(RequestZoneDTO requestZoneDTO, String authHeader);
 
 }
