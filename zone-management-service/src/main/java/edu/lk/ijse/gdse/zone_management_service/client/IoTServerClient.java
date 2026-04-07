@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "external-iot-server", url = "http://localhost:8087/api/devices/")
+@FeignClient(name = "external-iot-server", url = "http://localhost:8087/api/devices")
 public interface IoTServerClient {
 
     @PostMapping(consumes = "application/json")
     IotServerResponse registerDeviceWithZone(
-            @RequestHeader("Authorizaton") String authHeader,
+            @RequestHeader("Authorization") String authHeader,
             @RequestBody ZoneRegDTO zoneRegDTO
     );
 

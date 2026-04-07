@@ -20,9 +20,15 @@ public class ZoneController {
             @RequestBody RequestZoneDTO requestZoneDTO,
             @RequestHeader(value = "Authorization", required = false) String authHeader) {
 
-        if (authHeader.startsWith("Bearer ")) {
-            authHeader = "Bearer " + authHeader.substring(7);
-        }
+//        if (authHeader.startsWith("Bearer ")) {
+//            authHeader = "Bearer " + authHeader.substring(7);
+//        }
+
+        // problem is here:
+//        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//            authHeader = authHeader.substring(7); // remove "Bearer "
+//        }
+        System.out.println("This is Auth header: " + authHeader);
 
         if (requestZoneDTO.getMinTemp() < requestZoneDTO.getMaxTemp()) {
 
