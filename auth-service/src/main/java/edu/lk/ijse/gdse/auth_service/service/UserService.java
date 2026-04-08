@@ -6,5 +6,6 @@ import edu.lk.ijse.gdse.auth_service.dto.AuthResponseDTO;
 public interface UserService {
 
     AuthResponseDTO registeruser(AuthRequestDTO authRequestDTO);
+    AuthResponseDTO login(AuthRequestDTO authRequestDTO);
 
 }

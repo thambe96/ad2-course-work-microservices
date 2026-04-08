@@ -20,11 +20,21 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse> regiserUser(@RequestBody AuthRequestDTO authRequestDTO) {
+    public ResponseEntity<ApiResponse> registerUser(@RequestBody AuthRequestDTO authRequestDTO) {
         return ResponseEntity.ok(
                 new ApiResponse(HttpStatus.OK.value(),
                         "user registration was successful",
                         userService.registeruser(authRequestDTO)
+                )
+        );
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> loginUser(@RequestBody AuthRequestDTO authRequestDTO) {
+        return ResponseEntity.ok(
+                new ApiResponse(HttpStatus.OK.value(),
+                        "user login was successful",
+                        userService.login(authRequestDTO)
                 )
         );
     }
