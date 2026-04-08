@@ -50,5 +50,7 @@ public class ZoneController {
 
     }
 
+    // implement update tresholds , fetch specific zone details, delete zone
+
 
 }

@@ -30,6 +30,7 @@ public class ZoneServiceImpl implements ZoneService {
                 requestZoneDTO.getZoneId()
         );
 
+        // use a try catch block here to handle exceptions
         IotServerResponse iotServerResponse =
                 ioTServerClient
                 .registerDeviceWithZone(

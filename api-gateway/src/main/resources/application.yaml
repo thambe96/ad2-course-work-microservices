@@ -13,4 +13,5 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-# define routes
+# config server related
+# define routes,
