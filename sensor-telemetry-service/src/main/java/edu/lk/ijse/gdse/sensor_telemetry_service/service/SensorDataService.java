@@ -1,5 +1,6 @@
 package edu.lk.ijse.gdse.sensor_telemetry_service.service;
 
+import edu.lk.ijse.gdse.sensor_telemetry_service.client.AutomationControlClient;
 import edu.lk.ijse.gdse.sensor_telemetry_service.client.DeviceClient;
 import edu.lk.ijse.gdse.sensor_telemetry_service.client.IoTUserRefreshClient;
 import edu.lk.ijse.gdse.sensor_telemetry_service.client.SensorDataClient;
@@ -23,6 +24,7 @@ public class SensorDataService {
     private final SensorDataClient sensorDataClient;
     private final JWTUtil jwtUtil;
     private final IoTUserRefreshClient ioTUserRefreshClient;
+    private final AutomationControlClient automationControlClient;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
 
@@ -39,7 +41,6 @@ public class SensorDataService {
             if (jwtUtil.isTokenExpired(tokens.getAccessToken())) {
                 // call the refresh token
 
-
                 AuthResponseDTO authResponseDTO = ioTUserRefreshClient.refreshToken(
                         tokens.getAccessToken(),
                         new RefreshDTO(tokens.getRefreshToken()));
@@ -47,11 +48,7 @@ public class SensorDataService {
                 tokens.setAccessToken(authResponseDTO.getAccessToken());
                 tokens.setRefreshToken(authResponseDTO.getRefreshToken());
 
-                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                System.out.println("Refresh Token was called !!!");
-                System.out.println("Access Token: -> " + tokens.getAccessToken());
-                System.out.println("Refresh Token: -> " + tokens.getRefreshToken());
-                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
 //                accessToken = "Bearer " + tokens.getAccessToken();
                 accessToken.set("Bearer " + tokens.getAccessToken());
 
@@ -65,7 +62,9 @@ public class SensorDataService {
             devices.forEach(deviceDTO -> {
                 DeviceDetailsDTO deviceDetailsDTO = sensorDataClient.getDeviceData(tempAccessToken, deviceDTO.getDeviceId());
                 System.out.println(deviceDetailsDTO.toString());
-                System.out.println("---------------------------------------------------------");
+                // send data to automation-control service
+                automationControlClient.sendDeviceData(deviceDetailsDTO);
+
             });
 
 
@@ -73,9 +72,7 @@ public class SensorDataService {
 
 
 
-        // now make this async that runs every 10 seconds
 
-//        System.out.println(devices);
 
 
 
