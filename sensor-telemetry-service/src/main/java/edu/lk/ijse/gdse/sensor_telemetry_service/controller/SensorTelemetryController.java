@@ -1,19 +1,33 @@
 package edu.lk.ijse.gdse.sensor_telemetry_service.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import edu.lk.ijse.gdse.sensor_telemetry_service.dto.AuthResponseDTO;
+import edu.lk.ijse.gdse.sensor_telemetry_service.dto.Tokens;
+import edu.lk.ijse.gdse.sensor_telemetry_service.service.SensorDataService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/sensors")
+@RequiredArgsConstructor
 public class SensorTelemetryController {
 
-    @GetMapping
-    public void fetchSensorTelemetry() {
+    private final SensorDataService sensorDataService;
+
+    @PostMapping
+    public void fetchSensorTelemetry(@RequestBody AuthResponseDTO authResponseDTO) {
+        System.out.println(authResponseDTO.getUsername());
+        System.out.println(authResponseDTO.getAccessToken());
+        System.out.println(authResponseDTO.getRefreshToken());
+        //Now design the scheduler
+
+        Tokens tokens = new Tokens(
+                authResponseDTO.getAccessToken(),
+                authResponseDTO.getRefreshToken()
+        );
+
+        sensorDataService.fetchDevices(tokens);
+
 
     }
-
-
-
 
 }

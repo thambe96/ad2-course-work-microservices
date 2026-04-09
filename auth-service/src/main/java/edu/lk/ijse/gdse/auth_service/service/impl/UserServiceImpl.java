@@ -2,6 +2,7 @@ package edu.lk.ijse.gdse.auth_service.service.impl;
 
 import edu.lk.ijse.gdse.auth_service.client.IoTUserLoginClient;
 import edu.lk.ijse.gdse.auth_service.client.IoTUserRegClient;
+import edu.lk.ijse.gdse.auth_service.client.TelemetryServiceClient;
 import edu.lk.ijse.gdse.auth_service.dto.AuthRequestDTO;
 import edu.lk.ijse.gdse.auth_service.dto.AuthResponseDTO;
 import edu.lk.ijse.gdse.auth_service.entity.User;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 //    private final ModelMapper modelMapper;
     private final IoTUserRegClient ioTUserRegClient;
     private final IoTUserLoginClient ioTUserLoginClient;
+    private final TelemetryServiceClient telemetryServiceClient;
 
     @Override
     public AuthResponseDTO registeruser(AuthRequestDTO authRequestDTO) {
@@ -36,6 +38,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AuthResponseDTO login(AuthRequestDTO authRequestDTO) {
-        return ioTUserLoginClient.login(authRequestDTO);
+
+        AuthResponseDTO authResponseDTO = ioTUserLoginClient.login(authRequestDTO);
+        telemetryServiceClient.sendTokens(authResponseDTO);
+
+        return authResponseDTO;
     }
 }
