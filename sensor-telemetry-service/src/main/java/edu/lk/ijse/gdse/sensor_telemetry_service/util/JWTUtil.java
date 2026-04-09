@@ -13,10 +13,15 @@ import java.util.Date;
 @Component
 public class JWTUtil {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+//    @Value("${jwt.secret}")
+//    private String jwtSecret;
 
-    private final Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+//    private final Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    private Key key;
+
+    public JWTUtil(@Value("${jwt.secret}") String jwtSecret) {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    }
 
     public Claims getClaims(String token) {
         return Jwts.parserBuilder()
