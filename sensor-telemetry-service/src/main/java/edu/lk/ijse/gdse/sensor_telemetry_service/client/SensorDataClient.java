@@ -1,5 +1,6 @@
 package edu.lk.ijse.gdse.sensor_telemetry_service.client;
 
+import edu.lk.ijse.gdse.sensor_telemetry_service.dto.DeviceDetailsDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface SensorDataClient {
 
     @GetMapping("/telemetry/{deviceId}")
-    void getDeviceData(
+    DeviceDetailsDTO getDeviceData(
             @RequestHeader("Authorization") String accessToken,
             @PathVariable("deviceId") String deviceId
     );
