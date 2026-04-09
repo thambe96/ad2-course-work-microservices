@@ -5,9 +5,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "automation-client", url = "")
+@FeignClient(name = "automation-client", url = "http://localhost:8083/api/automation")
 public interface AutomationControlClient {
 
-    @PostMapping(value = "", consumes = "application/json")
+    @PostMapping(value = "/process", consumes = "application/json")
     void sendDeviceData(@RequestBody DeviceDetailsDTO deviceDetailsDTO);
 }
