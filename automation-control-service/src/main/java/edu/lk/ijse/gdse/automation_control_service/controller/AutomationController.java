@@ -12,7 +12,7 @@ public class AutomationController {
 
     @PostMapping(value = "/process")
     void saveLogs(@RequestBody SensorDataDTO sensorDataDTO) {
-
+        System.out.println("Automation Controller: " + sensorDataDTO.toString());
     }
 
 }
