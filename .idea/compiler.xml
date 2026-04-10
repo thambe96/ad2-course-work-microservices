@@ -19,7 +19,6 @@
         <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="crop-inventory-service" />
         <module name="zone-management-service" />
       </profile>
       <profile name="Annotation profile for sensor-telemetry-service" enabled="true">
@@ -39,6 +38,15 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="automation-control-service" />
+      </profile>
+      <profile name="Annotation profile for crop-inventory-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath>
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="crop-inventory-service" />
       </profile>
     </annotationProcessing>
   </component>

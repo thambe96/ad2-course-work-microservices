@@ -22,5 +22,10 @@ public class Crop {
     private StateMachine stateMachine;
     private Instant registeredAT;
 
+    @PrePersist
+    public void prePersist() {
+        registeredAT = Instant.now();
+    }
+
 
 }
