@@ -70,8 +70,8 @@ public class ZoneServiceImpl implements ZoneService {
         Object[] row = (Object[]) obj;
 
 
-        double minTemp = row[1] != null ? (Double) row[1] : 0.0;
-        double maxTemp = row[2] != null ? (Double) row[2] : 0.0;
+        double maxTemp = row[1] != null ? (Double) row[1] : 0.0;
+        double minTemp = row[2] != null ? (Double) row[2] : 0.0;
 
         return new ThresholdLimitsDTO(
                 (String) row[0],
