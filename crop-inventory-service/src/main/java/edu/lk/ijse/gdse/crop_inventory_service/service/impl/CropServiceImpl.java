@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CropServiceImpl implements CropService {
@@ -24,4 +26,25 @@ public class CropServiceImpl implements CropService {
         crop = cropRepo.save(crop);
         return modelMapper.map(crop, CropDTO.class);
     }
+
+    public CropDTO updateStatus(String id,  CropDTO cropDTO) {
+        Optional<Crop> crop = cropRepo.findById(id);
+
+        if (crop.isPresent()) {
+            Crop cropEntity = crop.get();
+
+            if (cropDTO.getStateMachine() == StateMachine.VEGETATIVE) {
+                cropEntity.setStateMachine(StateMachine.VEGETATIVE);
+                return modelMapper.map(cropRepo.save(cropEntity), CropDTO.class) ;
+            } else if (cropDTO.getStateMachine() == StateMachine.HARVESTED) {
+                cropEntity.setStateMachine(StateMachine.HARVESTED);
+                return modelMapper.map(cropRepo.save(cropEntity), CropDTO.class);
+            }
+
+        }
+
+        return null;
+
+    }
+
 }
