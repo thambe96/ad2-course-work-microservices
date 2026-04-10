@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
 @RequiredArgsConstructor
 public class ZoneServiceImpl implements ZoneService {
@@ -52,18 +54,30 @@ public class ZoneServiceImpl implements ZoneService {
 
         Object[] threshHoldLimits = zoneRepo.findZoneTempsNative(zoneId, deviceId);
 
+
         if (threshHoldLimits == null) {
             return null;
         }
 
-        double minTemp = threshHoldLimits[1] != null ? (Double) threshHoldLimits[1] : 0.0;
-        double maxTemp = threshHoldLimits[2] != null ? (Double) threshHoldLimits[2] : 0.0;
 
+//        for (Object obj : threshHoldLimits) {
+//            Object[] row = (Object[]) obj;
+//
+//            System.out.println(Arrays.toString(row));
+//        }
+
+        Object obj = threshHoldLimits[0];
+        Object[] row = (Object[]) obj;
+
+
+        double minTemp = row[1] != null ? (Double) row[1] : 0.0;
+        double maxTemp = row[2] != null ? (Double) row[2] : 0.0;
 
         return new ThresholdLimitsDTO(
-                (String) threshHoldLimits[0],
-                minTemp,
-                maxTemp
+                (String) row[0],
+                maxTemp,
+                minTemp
+
         );
     }
 }

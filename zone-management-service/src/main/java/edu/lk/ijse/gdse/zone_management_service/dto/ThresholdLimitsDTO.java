@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 public class ThresholdLimitsDTO {
 
     private String zoneId;
-    private double minTemp;
     private double maxTemp;
+    private double minTemp;
+
 
 }

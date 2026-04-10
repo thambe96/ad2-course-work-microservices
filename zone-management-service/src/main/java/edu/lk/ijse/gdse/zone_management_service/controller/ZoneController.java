@@ -2,6 +2,7 @@ package edu.lk.ijse.gdse.zone_management_service.controller;
 
 import edu.lk.ijse.gdse.zone_management_service.dto.ApiResponse;
 import edu.lk.ijse.gdse.zone_management_service.dto.RequestZoneDTO;
+import edu.lk.ijse.gdse.zone_management_service.dto.ThresholdLimitsDTO;
 import edu.lk.ijse.gdse.zone_management_service.service.ZoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,16 @@ public class ZoneController {
         ));
 
     }
+
+    @GetMapping(value = "/get-threshold-limits")
+    public ResponseEntity<ThresholdLimitsDTO> getZoneThresholdValues(
+            @RequestParam String zoneId, @RequestParam String deviceId) {
+        return ResponseEntity.ok(
+                zoneService.getZoneThresholdLimits(
+                        zoneId,
+                        deviceId));
+    }
+
 
 
 
