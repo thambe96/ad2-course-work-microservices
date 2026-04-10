@@ -29,19 +29,29 @@ public class AutomationServiceImpl implements AutomationService {
                 sensorDataDTO.getDeviceId());
 
         AutomationLog automationLog = new AutomationLog();
-        LocalDateTime automatedActionLoggedAt = null;
-        AutomationStatus automationStatus = AutomationStatus.TURN_FAN_ON;
+//        LocalDateTime automatedActionLoggedAt = null;
+        AutomationStatus automationStatus = AutomationStatus.NO_ACTION;
+
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Current Temperature: " + sensorDataDTO.getValue().getTemperature());
+        System.out.println("Max Temperature: " + zoneThresholdsDTO.getMaxTemp());
+        System.out.println("Min Temperature: " + zoneThresholdsDTO.getMinTemp());
+        System.out.println("--------------------------------------------------------");
+
         if (sensorDataDTO.getValue().getTemperature() > zoneThresholdsDTO.getMaxTemp()) {
-            automatedActionLoggedAt = LocalDateTime.now();
+//            automatedActionLoggedAt = LocalDateTime.now();
             log.info("Event={}", AutomationStatus.TURN_FAN_ON);
+            automationStatus = AutomationStatus.TURN_FAN_ON;
 
 
         }
         if (sensorDataDTO.getValue().getTemperature() < zoneThresholdsDTO.getMinTemp()) {
-            automatedActionLoggedAt = LocalDateTime.now();
+//            automatedActionLoggedAt = LocalDateTime.now();
             log.info("Event={}", AutomationStatus.TURN_HEATER_ON);
             automationStatus = AutomationStatus.TURN_HEATER_ON;
         }
+
+        LocalDateTime automatedActionLoggedAt = LocalDateTime.now();
 
         automationLog.setStatus(automationStatus);
         automationLog.setTime(automatedActionLoggedAt);

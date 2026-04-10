@@ -73,6 +73,12 @@ public class ZoneServiceImpl implements ZoneService {
         double maxTemp = row[1] != null ? (Double) row[1] : 0.0;
         double minTemp = row[2] != null ? (Double) row[2] : 0.0;
 
+        System.out.println("---------------------------------------------");
+        System.out.println("Min Temp: " + minTemp);
+        System.out.println("Max Temp: " + maxTemp);
+        System.out.println("ZoneId: " + (String) row[0]);
+        System.out.println("---------------------------------------------");
+
         return new ThresholdLimitsDTO(
                 (String) row[0],
                 maxTemp,

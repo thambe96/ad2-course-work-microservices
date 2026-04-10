@@ -1,8 +1,6 @@
 package edu.lk.ijse.gdse.zone_management_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +15,8 @@ import java.util.Date;
 public class Zone {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String recordId;
     private String zoneId;
     private String name;
     private String deviceId;
