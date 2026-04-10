@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +48,15 @@ public class CropServiceImpl implements CropService {
         return null;
 
     }
+
+    public List<CropDTO> getAllCrops() {
+        List<Crop> crops = cropRepo.findAll();
+        List<CropDTO> cropDTOS = new ArrayList<>();
+        for (Crop crop : crops) {
+            cropDTOS.add(modelMapper.map(crop, CropDTO.class));
+        }
+        return cropDTOS;
+    }
+
 
 }

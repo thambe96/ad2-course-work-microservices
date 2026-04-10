@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/crops")
 @RequiredArgsConstructor
@@ -30,6 +32,11 @@ public class CropServiceController {
                 "batch status updated",
                 cropService.updateStatus(id, cropDTO)
         ));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<CropDTO>> viewCurrentInventory() {
+        return ResponseEntity.ok(cropService.getAllCrops());
     }
 
 
