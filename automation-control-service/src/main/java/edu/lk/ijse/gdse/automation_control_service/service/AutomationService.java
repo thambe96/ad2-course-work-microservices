@@ -1,8 +1,10 @@
 package edu.lk.ijse.gdse.automation_control_service.service;
 
+import edu.lk.ijse.gdse.automation_control_service.dto.SensorDataDTO;
+
 public interface AutomationService {
 
-    void createLog(String zoneId, String deviceId);
+    void createLog(SensorDataDTO data);
 
 
 }
