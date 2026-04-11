@@ -25,17 +25,20 @@ public class JwtAuthFilter implements WebFilter {
             return unauthorized(exchange);
         }
 
+        String token = authHeader.substring(7);
+        if (!isValid(token)) {
+            return unauthorized(exchange);
+        }
 
-
-
-        return null;
+        // allow request
+        return chain.filter(exchange);
     }
 
 
     private boolean isValid(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey("secret".getBytes())
+                    .setSigningKey("bcd5bcc8555ca7d9f7cf971aecd33dc631a3b61bef110dcc2ba3634d4aaaf93d".getBytes())
                     .build()
                     .parseClaimsJws(token);
             return true;
