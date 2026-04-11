@@ -1,9 +1,11 @@
 package edu.lk.ijse.gdse.sensor_telemetry_service.controller;
 
 import edu.lk.ijse.gdse.sensor_telemetry_service.dto.AuthResponseDTO;
+import edu.lk.ijse.gdse.sensor_telemetry_service.dto.DeviceDetailsDTO;
 import edu.lk.ijse.gdse.sensor_telemetry_service.dto.Tokens;
 import edu.lk.ijse.gdse.sensor_telemetry_service.service.SensorDataService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,5 +31,14 @@ public class SensorTelemetryController {
 
 
     }
+
+
+    @GetMapping("/latest")
+    ResponseEntity<DeviceDetailsDTO> fetchLatestSensorTelemetry() {
+        return ResponseEntity.ok(sensorDataService.fetchLatestDeviceDetails());
+    }
+
+
+
 
 }

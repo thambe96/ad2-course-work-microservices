@@ -26,7 +26,7 @@ public class SensorDataService {
     private final IoTUserRefreshClient ioTUserRefreshClient;
     private final AutomationControlClient automationControlClient;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-
+    private DeviceDetailsDTO latestDeviceDetailsDTO = null;
 
     public void fetchDevices(Tokens tokens) {
 
@@ -64,6 +64,8 @@ public class SensorDataService {
                 System.out.println(deviceDetailsDTO.toString());
                 // send data to automation-control service
                 automationControlClient.sendDeviceData(deviceDetailsDTO);
+                latestDeviceDetailsDTO = deviceDetailsDTO;
+
 
             });
 
@@ -71,12 +73,12 @@ public class SensorDataService {
         }, 0, 10, TimeUnit.SECONDS);
 
 
-
-
-
-
-
     }
+
+    public DeviceDetailsDTO fetchLatestDeviceDetails() {
+        return latestDeviceDetailsDTO;
+    }
+
 
 
 }
