@@ -6,19 +6,33 @@ spring:
     name: API-GATEWAY
   cloud:
     gateway:
-      routes:
-        - id: AUTH-SERVICE
-          uri: http://localhost:8085
-          predicates:
-            - Path=/api/auth/**
+      server:
+        webmvc:
+          routes:
+                  - id: AUTH-SERVICE
+                    uri: http://localhost:8085
+                    predicates:
+                      - Path=/api/auth/**
 
-        - id: AUTOMATION-CONTROL-SERVICE
-          uri: http://localhost:8083
-          predicates:
-            - Path=/api/automation/**
+                  - id: AUTOMATION-CONTROL-SERVICE
+                    uri: http://localhost:8083
+                    predicates:
+                      - Path=/api/automation/**
 
+                  - id: CROP-INVENTORY-SERVICE
+                    uri: http://localhost:8084
+                    predicates:
+                      - Path=/api/crops/**
 
+                  - id: SENSOR-TELEMETRY-SERVICE
+                    uri: http://localhost:8082
+                    predicates:
+                      - Path=api/sensors/**
 
+                  - id: ZONE-MANAGEMENT-SERVICE
+                    uri: http://localhost:8081
+                    predicates:
+                      - Path=api/sensors/**
 
 
 eureka:
