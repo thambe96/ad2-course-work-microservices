@@ -27,9 +27,12 @@ public class AutomationServiceImpl implements AutomationService {
     @Override
     public void createLog(SensorDataDTO sensorDataDTO) {
 
+        System.out.println("SensorDataDTO: -> " + sensorDataDTO.toString());
+
         ZoneThresholdsDTO zoneThresholdsDTO = zoneThresholdClient.getZoneThresholds(
                 sensorDataDTO.getZoneId(),
                 sensorDataDTO.getDeviceId());
+
 
         AutomationLog automationLog = new AutomationLog();
 //        LocalDateTime automatedActionLoggedAt = null;

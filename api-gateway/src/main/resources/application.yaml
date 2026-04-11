@@ -4,6 +4,21 @@ server:
 spring:
   application:
     name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: AUTH-SERVICE
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/auth/**
+
+        - id: AUTOMATION-CONTROL-SERVICE
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/automation/**
+
+
+
 
 
 eureka:
