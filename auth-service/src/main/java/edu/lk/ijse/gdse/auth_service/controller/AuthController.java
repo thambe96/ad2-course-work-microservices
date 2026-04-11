@@ -7,10 +7,7 @@ import edu.lk.ijse.gdse.auth_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -39,6 +36,11 @@ public class AuthController {
         );
     }
 
+
+    @GetMapping("/test-auth")
+    public ResponseEntity<ApiResponse> testAuth() {
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK.value(), "success", null));
+    }
 
 
 

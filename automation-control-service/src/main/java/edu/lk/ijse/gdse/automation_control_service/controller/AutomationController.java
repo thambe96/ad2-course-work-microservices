@@ -29,6 +29,12 @@ public class AutomationController {
     }
 
 
+    @GetMapping("test-automation")
+    ResponseEntity<String> getTestAutomation() {
+        return ResponseEntity.ok("automation service success");
+    }
+
+
 
 
 }
