@@ -1,6 +1,7 @@
 package edu.lk.ijse.gdse.automation_control_service.service.impl;
 
 import edu.lk.ijse.gdse.automation_control_service.client.ZoneThresholdClient;
+import edu.lk.ijse.gdse.automation_control_service.dto.AutomationLogDTO;
 import edu.lk.ijse.gdse.automation_control_service.dto.SensorDataDTO;
 import edu.lk.ijse.gdse.automation_control_service.dto.ZoneThresholdsDTO;
 import edu.lk.ijse.gdse.automation_control_service.entity.AutomationLog;
@@ -12,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,7 @@ public class AutomationServiceImpl implements AutomationService {
 
         AutomationLog automationLog = new AutomationLog();
 //        LocalDateTime automatedActionLoggedAt = null;
-        AutomationStatus automationStatus = AutomationStatus.NO_ACTION;
+//        AutomationStatus automationStatus = AutomationStatus.NO_ACTION;
 
         System.out.println("--------------------------------------------------------");
         System.out.println("Current Temperature: " + sensorDataDTO.getValue().getTemperature());
@@ -39,27 +42,39 @@ public class AutomationServiceImpl implements AutomationService {
         System.out.println("--------------------------------------------------------");
 
         if (sensorDataDTO.getValue().getTemperature() > zoneThresholdsDTO.getMaxTemp()) {
-//            automatedActionLoggedAt = LocalDateTime.now();
             log.info("Event={}", AutomationStatus.TURN_FAN_ON);
-            automationStatus = AutomationStatus.TURN_FAN_ON;
-
-
+            automationLog.setStatus(AutomationStatus.TURN_FAN_ON);
+            automationLog.setTime(LocalDateTime.now());
+            automationLogRepo.save(automationLog);
         }
+
+
         if (sensorDataDTO.getValue().getTemperature() < zoneThresholdsDTO.getMinTemp()) {
-//            automatedActionLoggedAt = LocalDateTime.now();
             log.info("Event={}", AutomationStatus.TURN_HEATER_ON);
-            automationStatus = AutomationStatus.TURN_HEATER_ON;
+            automationLog.setStatus(AutomationStatus.TURN_HEATER_ON);
+            automationLog.setTime(LocalDateTime.now());
+            automationLogRepo.save(automationLog);
         }
-
-        LocalDateTime automatedActionLoggedAt = LocalDateTime.now();
-
-        automationLog.setStatus(automationStatus);
-        automationLog.setTime(automatedActionLoggedAt);
-        automationLogRepo.save(automationLog);
-
 
         //repo implement jpa
         // write the logic here
 
     }
+
+
+    public List<AutomationLogDTO> getAutomationLogs() {
+        List<AutomationLog> automationLogs = automationLogRepo.findAll();
+        List<AutomationLogDTO> automationLogDTOs = new ArrayList<>();
+        for (AutomationLog automationLog : automationLogs) {
+            automationLogDTOs.add(new AutomationLogDTO(
+                    automationLog.getAutomationId(),
+                    automationLog.getStatus(),
+                    automationLog.getTime()));
+        }
+        return automationLogDTOs;
+    }
+
+
+
+
 }

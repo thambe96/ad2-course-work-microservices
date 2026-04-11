@@ -1,12 +1,13 @@
 package edu.lk.ijse.gdse.automation_control_service.controller;
 
+import edu.lk.ijse.gdse.automation_control_service.dto.AutomationLogDTO;
 import edu.lk.ijse.gdse.automation_control_service.dto.SensorDataDTO;
 import edu.lk.ijse.gdse.automation_control_service.service.AutomationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/automation")
@@ -21,5 +22,13 @@ public class AutomationController {
         automationService.createLog(sensorDataDTO);
 
     }
+
+    @GetMapping("/logs")
+    ResponseEntity<List<AutomationLogDTO>> getLogs() {
+        return  ResponseEntity.ok(automationService.getAutomationLogs());
+    }
+
+
+
 
 }
