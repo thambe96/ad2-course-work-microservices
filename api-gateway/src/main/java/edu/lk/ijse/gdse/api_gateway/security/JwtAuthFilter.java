@@ -9,13 +9,15 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 @Component
-public class JwtAuthFilter implements WebFilter {
+public class JwtAuthFilter implements WebFilter{
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
         String path = exchange.getRequest().getURI().getPath();
 
-        if (path.startsWith("/auth/")) {
+        if (path.startsWith("/api/auth/")) {
+            System.out.println("This is Path: " + path);
             return chain.filter(exchange);
         }
 

@@ -21,7 +21,8 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http.csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchange -> exchange.pathMatchers("/auth/login", "/auth/register").permitAll()
+                .authorizeExchange(exchange -> exchange.pathMatchers(
+                        "/api/auth/**").permitAll()
                         .anyExchange().authenticated())
                         .addFilterBefore(jwtAuthFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                         .build();
