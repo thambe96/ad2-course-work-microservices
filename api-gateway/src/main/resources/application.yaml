@@ -1,44 +1,47 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
 
 spring:
   application:
     name: API-GATEWAY
-  cloud:
-    gateway:
-      routes:
-        - id: AUTH-SERVICE
-          uri: http://localhost:8085
-          predicates:
-            - Path=/api/auth/**
+  config:
+    import: configserver:http://localhost:8086
 
-        - id: AUTOMATION-CONTROL-SERVICE
-          uri: http://localhost:8083
-          predicates:
-            - Path=/api/automation/**
-
-        - id: CROP-INVENTORY-SERVICE
-          uri: http://localhost:8084
-          predicates:
-            - Path=/api/crops/**
-
-        - id: SENSOR-TELEMETRY-SERVICE
-          uri: http://localhost:8082
-          predicates:
-            - Path=api/sensors/**
-
-        - id: ZONE-MANAGEMENT-SERVICE
-          uri: http://localhost:8081
-          predicates:
-            - Path=api/sensors/**
-
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: AUTH-SERVICE
+#          uri: http://localhost:8085
+#          predicates:
+#            - Path=/api/auth/**
+#
+#        - id: AUTOMATION-CONTROL-SERVICE
+#          uri: http://localhost:8083
+#          predicates:
+#            - Path=/api/automation/**
+#
+#        - id: CROP-INVENTORY-SERVICE
+#          uri: http://localhost:8084
+#          predicates:
+#            - Path=/api/crops/**
+#
+#        - id: SENSOR-TELEMETRY-SERVICE
+#          uri: http://localhost:8082
+#          predicates:
+#            - Path=api/sensors/**
+#
+#        - id: ZONE-MANAGEMENT-SERVICE
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=api/sensors/**
+#
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
 
 # config server related
 # define routes,

@@ -1,22 +1,24 @@
-server:
-  port: 8081
+#server:
+#  port: 8081
 
 spring:
   application:
     name: ZONE-MANAGEMENT-SERVICE
-  datasource:
-    url: jdbc:mysql://localhost:3306/zone_service_db?createDatabaseIfNotExist=true
-    username: root
-    password: rooty@
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 10
-  jpa:
-    hibernate:
-      ddl-auto: update
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+  config:
+    import: configserver:http://localhost:8086
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/zone_service_db?createDatabaseIfNotExist=true
+#    username: root
+#    password: rooty@
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
