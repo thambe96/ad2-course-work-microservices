@@ -28,6 +28,9 @@ public class SensorDataService {
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
     private DeviceDetailsDTO latestDeviceDetailsDTO = null;
 
+    // to stop the thread -> the reference of the thread is taken to this variable
+    private ScheduledFuture<?> runnigTask = null;
+
     public void fetchDevices(Tokens tokens) {
 
 
@@ -72,11 +75,21 @@ public class SensorDataService {
 
         }, 0, 10, TimeUnit.SECONDS);
 
+        runnigTask = future;
+
 
     }
 
     public DeviceDetailsDTO fetchLatestDeviceDetails() {
         return latestDeviceDetailsDTO;
+    }
+
+
+    // to stop the running thread -> call this from the controller
+    public void terminateRunningTask() {
+        if (runnigTask != null) {
+            runnigTask.cancel(true);
+        }
     }
 
 

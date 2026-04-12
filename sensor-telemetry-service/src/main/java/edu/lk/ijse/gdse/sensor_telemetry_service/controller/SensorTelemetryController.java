@@ -17,9 +17,10 @@ public class SensorTelemetryController {
 
     @PostMapping
     public void fetchSensorTelemetry(@RequestBody AuthResponseDTO authResponseDTO) {
-        System.out.println(authResponseDTO.getUsername());
-        System.out.println(authResponseDTO.getAccessToken());
-        System.out.println(authResponseDTO.getRefreshToken());
+
+//        System.out.println(authResponseDTO.getUsername());
+//        System.out.println(authResponseDTO.getAccessToken());
+//        System.out.println(authResponseDTO.getRefreshToken());
         //Now design the scheduler
 
         Tokens tokens = new Tokens(
@@ -36,6 +37,11 @@ public class SensorTelemetryController {
     @GetMapping("/latest")
     ResponseEntity<DeviceDetailsDTO> fetchLatestSensorTelemetry() {
         return ResponseEntity.ok(sensorDataService.fetchLatestDeviceDetails());
+    }
+
+    @PostMapping("/terminate")
+    public void terminateSensorTelemetry() {
+        sensorDataService.terminateRunningTask();
     }
 
 
