@@ -4,7 +4,7 @@ This project contains multiple microservices developed for the AD2 course work
 
 # Smart Agriculture Microservices System
 
-![Java](https://img.shields.io/badge/Java-17-blue)
+![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
 ![Microservices](https://img.shields.io/badge/Architecture-Microservices-orange)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-blue)
@@ -66,6 +66,7 @@ Responsible for registering zones and devices with an external IoT server and st
 - Table: `zone`
 - Fields: `zone_id`, `device_id`, `name`, `min_temp`, `max_temp`
 
+---
 **zone_db_service**
 
 ![Zone DB Screenshot](./docs/zone_db.png)
@@ -104,6 +105,11 @@ Acts as the decision-making engine of the system.
 ![Automation Logs](./docs/automation_logs.png)
 
 ---
+**Live Telemetry**
+
+![Telemetry Logs](./docs/live_telemetry_logs.png)
+
+
 
 ### Crop Inventory Service
 
