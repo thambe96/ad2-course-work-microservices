@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -86,4 +88,27 @@ public class ZoneServiceImpl implements ZoneService {
 
         );
     }
+
+    public List<ZoneDTO> getZone(String zoneId) {
+
+
+        List<Zone> zone = zoneRepo.findByZoneId(zoneId);
+        if (zone == null) {
+            return null;
+        }
+
+        List<ZoneDTO> zoneDTOList = new ArrayList<>();
+        for (Zone z : zone) {
+            ZoneDTO zoneDTO = modelMapper.map(z, ZoneDTO.class);
+            zoneDTOList.add(zoneDTO);
+        }
+
+        return zoneDTOList;
+    }
+
+
+
+
+
+
 }

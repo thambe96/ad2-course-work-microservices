@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ZoneRepo extends JpaRepository<Zone, String> {
 
@@ -15,6 +17,8 @@ public interface ZoneRepo extends JpaRepository<Zone, String> {
             nativeQuery = true)
     Object[] findZoneTempsNative(@Param("zoneId") String zoneId,
                                  @Param("deviceId") String deviceId);
+
+    List<Zone> findByZoneId(String id);
 
 
 

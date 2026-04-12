@@ -60,6 +60,13 @@ public class ZoneController {
                         deviceId));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse> getZones(@PathVariable String id) {
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK.value(),
+                "zone details", zoneService.getZone(id)));
+    }
+
+
 
 
 
