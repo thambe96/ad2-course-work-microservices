@@ -67,6 +67,19 @@ public class ZoneController {
     }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateZoneThresholds(
+            @PathVariable String id,
+            @RequestBody ThresholdLimitsDTO thresholdLimitsDTO) {
+
+        thresholdLimitsDTO.setZoneId(id);
+
+        return ResponseEntity.ok(new ApiResponse(
+                HttpStatus.OK.value(),
+                "update thresholds",
+                zoneService.updateGivenZoneThresholds(thresholdLimitsDTO)));
+    }
+
 
 
 

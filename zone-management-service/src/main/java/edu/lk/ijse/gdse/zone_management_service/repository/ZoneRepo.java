@@ -3,9 +3,11 @@ package edu.lk.ijse.gdse.zone_management_service.repository;
 
 import edu.lk.ijse.gdse.zone_management_service.entity.Zone;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +21,14 @@ public interface ZoneRepo extends JpaRepository<Zone, String> {
                                  @Param("deviceId") String deviceId);
 
     List<Zone> findByZoneId(String id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Zone z SET z.minTemp = :minTemp, z.maxTemp = :maxTemp WHERE z.zoneId = :zoneId")
+    int updateTempsByZoneId(@Param("zoneId") String zoneId,
+                            @Param("minTemp") double minTemp,
+                            @Param("maxTemp") double maxTemp);
+
 
 
 

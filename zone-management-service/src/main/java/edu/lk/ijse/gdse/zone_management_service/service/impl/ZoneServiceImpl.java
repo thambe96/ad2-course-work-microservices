@@ -106,6 +106,14 @@ public class ZoneServiceImpl implements ZoneService {
         return zoneDTOList;
     }
 
+    public String updateGivenZoneThresholds(ThresholdLimitsDTO thresholdLimitsDTO) {
+        int effectedRows = zoneRepo.updateTempsByZoneId(
+                thresholdLimitsDTO.getZoneId(),
+                thresholdLimitsDTO.getMaxTemp(),
+                thresholdLimitsDTO.getMinTemp());
+        return effectedRows > 0 ? "Update Success" : "Update Failed";
+    }
+
 
 
 

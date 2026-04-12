@@ -11,5 +11,6 @@ public interface ZoneService {
     ZoneDTO saveZoneWithDevice(RequestZoneDTO requestZoneDTO, String authHeader);
     ThresholdLimitsDTO getZoneThresholdLimits(String zoneId, String deviceId);
     List<ZoneDTO> getZone(String zoneId);
+    String updateGivenZoneThresholds(ThresholdLimitsDTO thresholdLimitsDTO);
 
 }
