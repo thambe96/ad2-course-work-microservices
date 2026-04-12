@@ -29,6 +29,11 @@ public interface ZoneRepo extends JpaRepository<Zone, String> {
                             @Param("minTemp") double minTemp,
                             @Param("maxTemp") double maxTemp);
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Zone z WHERE z.zoneId = :zoneId")
+    int deleteZoneById(@Param("zoneId") String zoneId);
+
 
 
 

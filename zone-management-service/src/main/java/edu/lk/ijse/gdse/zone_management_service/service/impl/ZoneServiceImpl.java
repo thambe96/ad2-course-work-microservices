@@ -114,6 +114,11 @@ public class ZoneServiceImpl implements ZoneService {
         return effectedRows > 0 ? "Update Success" : "Update Failed";
     }
 
+    public String deleteZone(String zoneId) {
+        int effectedRows = zoneRepo.deleteZoneById(zoneId);
+        return effectedRows > 0 ? "Delete Success" : "Delete Failed";
+    }
+
 
 
 

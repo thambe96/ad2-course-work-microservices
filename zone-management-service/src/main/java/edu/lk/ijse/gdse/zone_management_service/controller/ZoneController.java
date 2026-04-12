@@ -81,6 +81,14 @@ public class ZoneController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteZones(@PathVariable String id) {
+        return ResponseEntity.ok(
+                new ApiResponse(
+                        HttpStatus.OK.value(),
+                        "delete zone", zoneService.deleteZone(id)));
+    }
+
 
 
 

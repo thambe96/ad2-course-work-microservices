@@ -12,5 +12,6 @@ public interface ZoneService {
     ThresholdLimitsDTO getZoneThresholdLimits(String zoneId, String deviceId);
     List<ZoneDTO> getZone(String zoneId);
     String updateGivenZoneThresholds(ThresholdLimitsDTO thresholdLimitsDTO);
+    String deleteZone(String zoneId);
 
 }
