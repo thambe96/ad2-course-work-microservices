@@ -66,9 +66,9 @@ Responsible for registering zones and devices with an external IoT server and st
 - Table: `zone`
 - Fields: `zone_id`, `device_id`, `name`, `min_temp`, `max_temp`
 
-**Screenshot**
+**zone_db_service**
 
-![Zone DB Screenshot](./screenshots/zone-db.png)
+![Zone DB Screenshot](./docs/zone_db.png)
 
 ---
 
@@ -99,9 +99,9 @@ Acts as the decision-making engine of the system.
 - `POST /api/automation/process`
 - `GET /logs`
 
-**Screenshot**
+**Automation Logs**
 
-![Automation Logs](./screenshots/automation-logs.png)
+![Automation Logs](./docs/automation_logs.png)
 
 ---
 
@@ -119,9 +119,11 @@ Manages crop batches and lifecycle stages.
 
 **Screenshots**
 
-![Crop Registration](./screenshots/crop-register.png)
-![Crop Lifecycle](./screenshots/crop-lifecycle.png)
-![Crop Inventory](./screenshots/crop-inventory.png)
+![Crop Registration](./docs/crops_db.png)
+
+[//]: # (![Crop Lifecycle]&#40;./screenshots/crop-lifecycle.png&#41;)
+
+[//]: # (![Crop Inventory]&#40;./screenshots/crop-inventory.png&#41;)
 
 ---
 
@@ -145,18 +147,22 @@ Handles authentication and authorization.
 
 Centralized configuration management using a GitHub repository.
 
-**Repository**
-[Centralized Configuration Repository](YOUR_GITHUB_CONFIG_REPO_LINK_HERE)
+**Github Repository**
+[Centralized Configuration Repository](https://github.com/thambe96/ad2-application-config)
 
 ---
+## Eureka Server
+![Eureka Server](./docs/eureka_server.png)
 
 ## External IoT Server
 
 - Runs using Docker on Port 8087
 
-**Screenshot**
+---
 
-![IoT Server](./screenshots/iot-server.png)
+**IoT backend**
+
+![IoT Server](./docs/iot_server.png)
 
 ---
 
@@ -174,6 +180,7 @@ Centralized configuration management using a GitHub repository.
 ## Tech Stack
 
 - Backend: Spring Boot (Microservices)
+- HTTP Client: OpenFeign (Internal Communication between microservices and external communication)
 - Database: MySQL
 - Service Discovery: Eureka
 - API Gateway: Spring Cloud Gateway
