@@ -1,16 +1,18 @@
-server:
-  port: 8082
+#server:
+#  port: 8082
 
 spring:
   application:
     name: SENSOR-TELEMETRY-SERVICE
+  config:
+    import: configserver:http://localhost:8086
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-jwt:
-  secret: bcd5bcc8555ca7d9f7cf971aecd33dc631a3b61bef110dcc2ba3634d4aaaf93d
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#
+#jwt:
+#  secret: bcd5bcc8555ca7d9f7cf971aecd33dc631a3b61bef110dcc2ba3634d4aaaf93d
