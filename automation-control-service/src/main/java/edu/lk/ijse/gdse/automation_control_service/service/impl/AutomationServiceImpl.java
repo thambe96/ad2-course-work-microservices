@@ -45,17 +45,29 @@ public class AutomationServiceImpl implements AutomationService {
         System.out.println("--------------------------------------------------------");
 
         if (sensorDataDTO.getValue().getTemperature() > zoneThresholdsDTO.getMaxTemp()) {
-            log.info("Event={}", AutomationStatus.TURN_FAN_ON);
+            log.info("Event = {} Current Temp: {} Max Temp: {} ",
+                    AutomationStatus.TURN_FAN_ON,
+                    sensorDataDTO.getValue().getTemperature(),
+                    zoneThresholdsDTO.getMaxTemp());
             automationLog.setStatus(AutomationStatus.TURN_FAN_ON);
             automationLog.setTime(LocalDateTime.now());
+            automationLog.setCurrentTemp(sensorDataDTO.getValue().getTemperature());
+            automationLog.setMaxTemp(zoneThresholdsDTO.getMaxTemp());
+            automationLog.setMinTemp(zoneThresholdsDTO.getMinTemp());
             automationLogRepo.save(automationLog);
         }
 
 
         if (sensorDataDTO.getValue().getTemperature() < zoneThresholdsDTO.getMinTemp()) {
-            log.info("Event={}", AutomationStatus.TURN_HEATER_ON);
+            log.info("Event = {} Current Temp: {}  Min Temp: {}",
+                    AutomationStatus.TURN_HEATER_ON,
+                    sensorDataDTO.getValue().getTemperature(),
+                    zoneThresholdsDTO.getMinTemp());
             automationLog.setStatus(AutomationStatus.TURN_HEATER_ON);
             automationLog.setTime(LocalDateTime.now());
+            automationLog.setCurrentTemp(sensorDataDTO.getValue().getTemperature());
+            automationLog.setMaxTemp(zoneThresholdsDTO.getMaxTemp());
+            automationLog.setMinTemp(zoneThresholdsDTO.getMinTemp());
             automationLogRepo.save(automationLog);
         }
 

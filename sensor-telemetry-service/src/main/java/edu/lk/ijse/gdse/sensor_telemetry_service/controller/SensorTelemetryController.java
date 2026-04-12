@@ -41,7 +41,8 @@ public class SensorTelemetryController {
 
     @PostMapping("/terminate")
     public void terminateSensorTelemetry() {
-        sensorDataService.terminateRunningTask();
+        System.out.println("Terminating sensor telemetry");
+//        sensorDataService.terminateRunningTask();
     }
 
 

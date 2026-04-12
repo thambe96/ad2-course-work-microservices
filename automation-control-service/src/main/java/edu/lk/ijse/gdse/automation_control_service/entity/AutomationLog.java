@@ -22,6 +22,11 @@ public class AutomationLog {
     @Enumerated (EnumType.STRING)
     private AutomationStatus status;
 
+    private double currentTemp;
+    private double maxTemp;
+    private double minTemp;
+
+
     private LocalDateTime time;
 
 }

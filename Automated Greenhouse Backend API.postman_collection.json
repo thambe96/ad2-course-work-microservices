@@ -1,0 +1,441 @@
+{
+  "info": {
+    "_postman_id": "e8eb7945-fe77-4c39-8278-facb8ffa579d",
+    "name": "Automated Greenhouse Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46760754",
+    "_collection_link": "https://go.postman.co/collection/46760754-e8eb7945-fe77-4c39-8278-facb8ffa579d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth-service",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"user13\",\r\n    \"password\": \"pass13\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"user12\",\r\n    \"password\": \"pass12\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "zone-management-service",
+      "item": [
+        {
+          "name": "Register Zone and Device",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"zoneId\": \"Zone-F\",\r\n    \"name\": \"Lab-Temp-Sensor\",\r\n    \"minTemp\": 23.50,\r\n    \"maxTemp\": 24.30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/zones",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "zones"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Specific Zone Details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"zoneId\": \"Zone-F\",\r\n    \"name\": \"Lab-Temp-Sensor\",\r\n    \"minTemp\": 23.50,\r\n    \"maxTemp\": 24.30\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/zones/Zone-F",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "zones",
+                "Zone-F"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Thresholds",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \r\n    \"minTemp\": 23.20,\r\n    \"maxTemp\": 24.10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/zones/Zone-F",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "zones",
+                "Zone-F"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Zone",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/zones/Zone-F",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "zones",
+                "Zone-F"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "sensor-telemetry-service",
+      "item": [
+        {
+          "name": "Latest Fetched Reading",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/sensors/latest",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "sensors",
+                "latest"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "automation-service",
+      "item": [
+        {
+          "name": "Triggered Actions",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/automation/logs",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "automation",
+                "logs"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "crop-inventory-service",
+      "item": [
+        {
+          "name": "Register New Batch",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"cropName\": \"potato\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/crops",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "crops"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-lifecycle-stage",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\r\n    \"stateMachine\": \"VEGETATIVE\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/crops/4ecba3a2-c775-4e5c-a59d-d48758d5a360/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "crops",
+                "4ecba3a2-c775-4e5c-a59d-d48758d5a360",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "view-current-inventory",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6IjJjZTIzMWM1LTIxYmYtNDhjOS04NjkxLTg1NjNjMTU0ZTU0NSIsInN1YiI6InVzZXIxMyIsImlhdCI6MTc3NTk4ODc5NSwiZXhwIjoxNzc1OTg5Njk1fQ.s-yCoXF6FNXUyVAHJcZjRGHL1C_6RWxCpv-AEGwXa30",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/crops",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "crops"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
